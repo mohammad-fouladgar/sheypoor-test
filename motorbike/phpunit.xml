@@ -27,5 +27,8 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_DATABASE" value="motorbike-test"/>
+        <env name="API_DEBUG" value="false"/>
+        <ini name="memory_limit" value="512M" />
     </php>
 </phpunit>

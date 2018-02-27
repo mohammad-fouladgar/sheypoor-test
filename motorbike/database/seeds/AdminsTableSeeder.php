@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Entities\Admin;
 
-class DatabaseSeeder extends Seeder
+class AdminsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run()
     {
-        $this->call(AdminsTableSeeder::class);
+        factory(Admin::class)->create();
     }
 }

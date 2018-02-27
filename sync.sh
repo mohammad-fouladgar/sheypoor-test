@@ -58,7 +58,7 @@ if [ "$1" == "up" ] ; then
 
     echo -e "${GREEN}Done!${NC}" 
     echo -e "For use app visit:        ${GREEN}http://localhost:8080${NC}"
-    echo -e "For use phpmyadmin visit: ${GREEN}http://localhost:8183${NC}"
+    echo -e "For use phpmyadmin visit: ${GREEN}http://localhost:8184${NC}"
 
 elif [ "$1" == "stop" ]; then
     print_style "Stopping Docker Compose\n" "info"

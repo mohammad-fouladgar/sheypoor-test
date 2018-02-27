@@ -12,10 +12,5 @@
 */
 
 Route::get('/', function () {
-    // "mysql:host=mysql;port=3307;dbname=motorbike", "root", "root", []
-    // $myPDO = new \PDO('mysql:host=mysql;port=3306;dbname=motorbike', 'root', 'root', []);
-    // dd($myPDO);
-
-    return \App\User::all();
-    // return view('welcome');
+    return view('welcome');
 });

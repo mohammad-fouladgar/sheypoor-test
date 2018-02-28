@@ -15,6 +15,9 @@
                     @endif
 
                     You are logged in!
+                    <div class="row row justify-content-center">
+                    <a href="{{route('motors.create')}}"  class="btn btn-primary btn-lg">Create A New MotorBikes</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,24 +19,10 @@ class MotorController extends Controller
      */
     public function __construct(Motor $motor)
     {
-        $this->middleware('auth', [
-            'except' => [
-                'index', 'show',
-            ],
-        ]);
+        $this->middleware('auth');
 
         $this->motor = $motor;
     }
-
-    /*
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {
-    //     return view('home');
-    // }
 
     public function create()
     {

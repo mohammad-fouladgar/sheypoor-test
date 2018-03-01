@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
+  <style>
+.tooltip.in{
+    opacity: 0.9  !important;
+}
+</style>
 </head>
 <body>
     <div id="app">
@@ -48,6 +55,9 @@
                                                      document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        Home
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -67,5 +77,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    @stack('scripts')
+    
 </body>
 </html>

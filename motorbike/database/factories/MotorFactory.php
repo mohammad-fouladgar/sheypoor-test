@@ -11,8 +11,10 @@ $factory->define(Motor::class, function (Faker $faker) {
         'model' => $faker->word,
         'cc' => $faker->randomDigitNotNull,
         'weight' => $faker->numberBetween(100, 500),
-        'price' => $faker->randomFloat(null, 1, 8),
-        'color' => $faker->colorName(),
-        'photo' => $photo->store('motors', 'public'),
+        'price' => $faker->randomFloat(null, 1, 1000),
+        'color' => $faker->randomElement([
+            'white', 'black', 'red', 'orang', 'blue', 'yellow', 'gray',
+        ]),
+        'photo' => basename($photo->store('motors', 'public')),
     ];
 });

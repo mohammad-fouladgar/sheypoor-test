@@ -19,7 +19,7 @@ class MotorSearchController extends Controller
     {
         // \DB::connection()->enableQueryLog();
         $motors = MotorSearch::filter($filters);
-        // dd(\DB::getQueryLog());
+        // dd($motors->toArray(), \DB::getQueryLog());
 
         return view('lists', compact('motors'));
     }

@@ -4,29 +4,39 @@ namespace App\Search\Foundation;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use App\Search\Foundation\ConcreteFilterFactory as FilterFactory;
 
 trait SearchableTrait
 {
     public static function filter(Request $filters)
     {
         $query = static::applyDecoratorsFromRequest(
-            $filters, app(self::MODEL)->newQuery()
+            $filters, app(static::model())->newQuery()
         );
 
         return static::getResults($query);
     }
 
-    private static function applyDecoratorsFromRequest(Request $request, Builder $query)
+    protected static function applyDecoratorsFromRequest(Request $request, Builder $query)
     {
         foreach (static::getFilters($request) as $filterName => $value) {
             $decorator = static::createFilterDecorator($filterName);
 
-            if (static::isValidDecorator($decorator)) {
-                $query = $decorator::apply($query, $value);
+            try {
+                $query = FilterFactory::factoryMethod($decorator)::apply($query, $value);
+            } catch (\InvalidArgumentException $e) {
+                \Log::warning($e->getMessage());
             }
         }
 
         return $query;
+    }
+
+    protected static function createFilterDecorator(string $name): string
+    {
+        return  self::FILTER_NAMESPACE.str_replace(' ', '',
+                    ucwords(str_replace('_', ' ', $name))
+                );
     }
 
     /**
@@ -41,19 +51,7 @@ trait SearchableTrait
         return $request->all();
     }
 
-    private static function createFilterDecorator(string $name): string
-    {
-        return  self::FILTER_NAMESPACE.str_replace(' ', '',
-                    ucwords(str_replace('_', ' ', $name))
-                );
-    }
-
-    private static function isValidDecorator(string $decorator): bool
-    {
-        return class_exists($decorator);
-    }
-
-    private static function getResults(Builder $query)
+    protected static function getResults(Builder $query)
     {
         return $query->paginate();
     }

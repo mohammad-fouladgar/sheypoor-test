@@ -35,7 +35,7 @@ class MotorFeatureTest extends TestCase
             ],
         ];
 
-        $response = $this->get('/search', $queries);
+        $response = $this->get('/search?'.http_build_query($queries));
 
         $response
             ->assertStatus(200)
@@ -54,7 +54,7 @@ class MotorFeatureTest extends TestCase
             ],
         ];
 
-        $response = $this->get('/search', $queries);
+        $response = $this->get('/search?'.http_build_query($queries));
 
         $response
             ->assertStatus(200)
@@ -81,7 +81,7 @@ class MotorFeatureTest extends TestCase
         $response = $this->get(route('motors.show', 'foo_id'));
 
         $response
-            ->assertStatus(302)
-            ->assertRedirect();
+            ->assertStatus(404)
+            ->assertSee('Sorry, the page you are looking for could not be found.');
     }
 }

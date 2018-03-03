@@ -12,4 +12,11 @@ interface Searchable
      * @param Request $filters
      */
     public static function filter(Request $filters);
+
+    /**
+     * Return a namespace of the eloquent model.
+     *
+     * @return string
+     */
+    public static function model(): string;
 }

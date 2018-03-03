@@ -10,6 +10,10 @@ class MotorSearch implements Searchable
 {
     use SearchableTrait;
 
-    const MODEL = Motor::class;
     const FILTER_NAMESPACE = __NAMESPACE__.'\\Filters\\';
+
+    public static function model(): string
+    {
+        return Motor::class;
+    }
 }

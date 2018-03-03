@@ -26,6 +26,7 @@ $ ./sync bash
 ```sh
 $ root@5feeba100da: php artisan migrate
 ```
+**Note:** For testing,please make a DB as **motorbike-test** .
 - And run the unit-tests:
 ```sh
 $ root@5feeba100da: ./vendor/bin/phpunit

@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('motors', 'MotorController', ['except' => [
+    'edit', 'update', 'destroy',
+]]);
+
+Route::group(['perfix' => '/'], function () {
+    Route::get('/', 'MotorSearchController@index');
+    Route::get('search', 'MotorSearchController@search')->name('motors.search');
+    Route::get('search/{motorbike}/show', 'MotorSearchController@show')->name('motors.show');
 });
